@@ -24,7 +24,14 @@ import {
   SidebarItem,
   Overlay,
   Loading,
-  Switch
+  Switch,
+  Lazyload,
+  NoticeBar,
+  Tabbar,
+  TabbarItem,
+  CountDown,
+  Swipe,
+  SwipeItem
 } from 'vant'
 
 Vue.use(Tabs)
@@ -53,3 +60,12 @@ Vue.use(SidebarItem)
 Vue.use(Overlay)
 Vue.use(Loading)
 Vue.use(Switch)
+Vue.use(NoticeBar)
+Vue.use(Tabbar)
+Vue.use(TabbarItem)
+Vue.use(CountDown)
+Vue.use(Swipe)
+Vue.use(SwipeItem)
+Vue.use(Lazyload, {
+  lazyComponent: true
+})

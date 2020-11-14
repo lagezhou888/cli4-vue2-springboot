@@ -3,17 +3,17 @@ import axios from 'axios'
 
 let cancel
 const CancelToken = axios.CancelToken
-const User = {
-  login (data) {
-    return HTTP.post('/api/userController/login', data, {
-      cancelToken: new CancelToken(function executor (c) {
-        cancel = c
-      })
-    })
-  },
-  getVerifyCode () {
+const config = {
+  // login (data) {
+  //   return HTTP.post('/api/userController/login', data, {
+  //     cancelToken: new CancelToken(function executor (c) {
+  //       cancel = c
+  //     })
+  //   })
+  // },
+  getAllConfig () {
     return HTTP.get(
-      '/api/userController/getVerifyCode',
+      '/api/config/select',
       {
         cancelToken: new CancelToken(function executor (c) {
           cancel = c
@@ -27,4 +27,4 @@ const User = {
     }
   }
 }
-export default User
+export default config

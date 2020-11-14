@@ -2,14 +2,52 @@
   <div class="content-data-show">
     <div class="content-title"><div class="content-title-icon"></div><div class="content-title-font">数据详情</div></div>
     <div class="content-data">
-      <div class="content-data-icon">图标一</div><div class="content-data-text">内容一</div>
+      <table class="content-data-table">
+        <tr class="content-data-table-tr">
+          <td class="content-data-table-td">
+            <div class="content-data-type"><van-icon name="chat-o" color="red" size="40"/>内容一</div>
+          </td>
+          <td class="content-data-table-td"><div class="content-data-type">
+            <van-icon name="like-o" color="green" size="40"/>内容二</div>
+          </td>
+        </tr>
+        <tr class="content-data-table-tr">
+          <td class="content-data-table-td">
+            <div class="content-data-type">数据1</div>
+          </td>
+          <td class="content-data-table-td">
+            <div class="content-data-type">数据2</div>
+          </td>
+        </tr>
+      </table>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Card'
+  name: 'Card',
+  data () {
+    return {
+      dataDetails: [{
+        icon: '',
+        type: '',
+        value: ''
+      }, {
+        icon: '',
+        type: '',
+        value: ''
+      }, {
+        icon: '',
+        type: '',
+        value: ''
+      }, {
+        icon: '',
+        type: '',
+        value: ''
+      }]
+    }
+  }
 }
 </script>
 
@@ -30,12 +68,21 @@ export default {
     }
   }
   .content-data {
-    display: flex;
-    .content-data-icon {
-      flex: 1
-    }
-    .content-data-text {
-      flex: 1
+    .content-data-table {
+      text-align: center;
+      margin: 0 auto;
+      border-collapse: collapse;
+      .content-data-table-tr {
+        .content-data-table-td {
+          height: 44px;
+          border: 1px solid #cad9ea;
+          .content-data-type {
+            justify-content: center;
+            font-size: 16px;
+            font-weight: bold;
+          }
+        }
+      }
     }
   }
 }

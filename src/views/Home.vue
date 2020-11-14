@@ -66,7 +66,7 @@ export default {
   name: 'Home',
   created () {
     // console.log('start to enter created ', this.$t('messages.hello'))
-    this.getVerifyCode(4)
+    this.getVerifyCode()
   },
   data () {
     return {

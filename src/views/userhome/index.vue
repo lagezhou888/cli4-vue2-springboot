@@ -14,15 +14,19 @@
       </van-swipe>
     </div>
     <!--数据展示-->
-    <card></card>
+    <card :dataDetails="dataDetails"></card>
+    <!--echarts展示-->
+    <echarts :chartData="chartData" :chartSettings="chartSettings"></echarts>
   </div>
 </template>
 
 <script>
 import Card from '@/components/card'
+import Echarts from '@/components/echarts'
 export default {
   name: 'index',
   components: {
+    Echarts,
     Card
   },
   created () {
@@ -32,11 +36,47 @@ export default {
   },
   data () {
     return {
+      chartData: {
+        columns: ['品种', '数量', '成交均价'],
+        rows: [{ 品种: '富士', 数量: 1393, 成交均价: 2.3 },
+          { 品种: '红', 数量: 3530, 成交均价: 2.3 },
+          { 品种: '黄', 数量: 2923, 成交均价: 2.5 },
+          { 品种: '白', 数量: 1723, 成交均价: 2.3 },
+          { 品种: '果光', 数量: 3792, 成交均价: 2.7 },
+          { 品种: '次等', 数量: 4593, 成交均价: 2.3 }
+        ]
+      },
+      chartSettings: {
+        splitLine: { show: false },
+        axisSite: { right: ['成交均价'] },
+        showLine: ['成交均价']
+      },
       time: 0,
       images: [
         'https://img.yzcdn.cn/vant/apple-1.jpg',
         'https://img.yzcdn.cn/vant/apple-2.jpg'
-      ]
+      ],
+      dataDetails: [{
+        icon: 'contact',
+        iconColor: 'blue',
+        type: '总户数',
+        value: '233户'
+      }, {
+        icon: 'flower-o',
+        iconColor: 'red',
+        type: '果树总量',
+        value: '5888颗'
+      }, {
+        icon: 'logistics',
+        iconColor: 'green',
+        type: '快递点数量',
+        value: '5个'
+      }, {
+        icon: 'bill-o',
+        iconColor: 'grey',
+        type: '2020年产值',
+        value: '10亿'
+      }]
     }
   }
 }

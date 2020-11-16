@@ -31,7 +31,10 @@ import {
   TabbarItem,
   CountDown,
   Swipe,
-  SwipeItem
+  SwipeItem,
+  Col,
+  Row,
+  Uploader
 } from 'vant'
 
 Vue.use(Tabs)
@@ -66,6 +69,9 @@ Vue.use(TabbarItem)
 Vue.use(CountDown)
 Vue.use(Swipe)
 Vue.use(SwipeItem)
+Vue.use(Col)
+Vue.use(Row)
+Vue.use(Uploader)
 Vue.use(Lazyload, {
   lazyComponent: true
 })

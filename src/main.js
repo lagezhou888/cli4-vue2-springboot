@@ -8,7 +8,10 @@ import 'vant/lib/index.less'
 import 'amfe-flexible/index.js'
 import inject from '@/plugins/inject'
 import { i18n, vantLocales } from '@/lang'
+import VCharts from 'v-charts'
 vantLocales(i18n.locale)
+
+Vue.use(VCharts)
 Vue.use(inject)
 new Vue({
   router,

@@ -1,25 +1,14 @@
 <template>
   <div class="content-data-show">
     <div class="content-title"><div class="content-title-icon"></div><div class="content-title-font">数据详情</div></div>
-    <div class="content-data">
-      <table class="content-data-table">
-        <tr class="content-data-table-tr">
-          <td class="content-data-table-td">
-            <div class="content-data-type"><van-icon name="chat-o" color="red" size="40"/>内容一</div>
-          </td>
-          <td class="content-data-table-td"><div class="content-data-type">
-            <van-icon name="like-o" color="green" size="40"/>内容二</div>
-          </td>
-        </tr>
-        <tr class="content-data-table-tr">
-          <td class="content-data-table-td">
-            <div class="content-data-type">数据1</div>
-          </td>
-          <td class="content-data-table-td">
-            <div class="content-data-type">数据2</div>
-          </td>
-        </tr>
-      </table>
+    <div class="content">
+      <van-row class="content-row" v-for="(item, index) in dataDetails" :key="index">
+        <van-col span="24" class="content-col">
+          <van-icon class="content-col-icon" :name="item.icon" :color="item.iconColor" size="30"/>
+          <div class="content-col-type">{{item.type}}</div>
+          <div class="content-col-value">{{item.value}}</div>
+        </van-col>
+      </van-row>
     </div>
   </div>
 </template>
@@ -29,23 +18,12 @@ export default {
   name: 'Card',
   data () {
     return {
-      dataDetails: [{
-        icon: '',
-        type: '',
-        value: ''
-      }, {
-        icon: '',
-        type: '',
-        value: ''
-      }, {
-        icon: '',
-        type: '',
-        value: ''
-      }, {
-        icon: '',
-        type: '',
-        value: ''
-      }]
+    }
+  },
+  props: {
+    dataDetails: {
+      type: Array,
+      default: () => []
     }
   }
 }
@@ -54,6 +32,7 @@ export default {
 <style lang="less" scoped>
 .content-data-show {
   margin-left: 20px;
+  margin-right: 20px;
   margin-top: 10px;
   .content-title {
     display: flex;
@@ -67,20 +46,31 @@ export default {
       font-size: 14px;
     }
   }
-  .content-data {
-    .content-data-table {
-      text-align: center;
-      margin: 0 auto;
-      border-collapse: collapse;
-      .content-data-table-tr {
-        .content-data-table-td {
-          height: 44px;
-          border: 1px solid #cad9ea;
-          .content-data-type {
-            justify-content: center;
-            font-size: 16px;
-            font-weight: bold;
-          }
+  .content {
+    padding-top: 12px;
+    .content-row {
+      height: 30px;
+      .content-col {
+        display: flex;
+        .content-col-icon {
+          flex: 0;
+        }
+        .content-col-type {
+          flex: 1;
+          text-align: left;
+          padding-left: 10px;
+          font-size: 14px;
+          height: 30px;
+          line-height: 30px;
+          font-weight: bold;
+        }
+        .content-col-value {
+          flex: 1;
+          text-align: left;
+          padding-left: 10px;
+          font-size: 14px;
+          height: 30px;
+          line-height: 30px;
         }
       }
     }

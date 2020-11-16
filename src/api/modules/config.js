@@ -21,6 +21,13 @@ const config = {
       }
     )
   },
+  uploadImg (data) {
+    return HTTP.post('/api/attachment/upload', data, {
+      cancelToken: new CancelToken(function executor (c) {
+        cancel = c
+      })
+    })
+  },
   cancelRequest () {
     if (typeof cancel === 'function') {
       cancel()

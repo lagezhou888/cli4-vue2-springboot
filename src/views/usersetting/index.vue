@@ -1,13 +1,15 @@
 <template>
   <div>
-    用户设置
+    <upload></upload>
   </div>
 </template>
 
 <script>
+import Upload from '@/components/upload'
 export default {
   name: 'index',
   components: {
+    Upload
   }
 }
 </script>

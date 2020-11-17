@@ -105,6 +105,7 @@ export default {
         password: this.password
       }
       this.$Api.User.login(params).then((res) => {
+        localStorage.setItem('userId', res.data.id)
         that.$router.push('/about')
       }).catch((err) => {
         this.$toast(err.msg)

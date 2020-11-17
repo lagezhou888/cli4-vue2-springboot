@@ -28,6 +28,26 @@ const config = {
       })
     })
   },
+  getHeadIcon (userId) {
+    return HTTP.get(
+      `/api/attachment/select/${userId}`,
+      {
+        cancelToken: new CancelToken(function executor (c) {
+          cancel = c
+        })
+      }
+    )
+  },
+  deleteHeadIcon (userId) {
+    return HTTP.delete(
+      `/api/attachment?userId=${userId}`,
+      {
+        cancelToken: new CancelToken(function executor (c) {
+          cancel = c
+        })
+      }
+    )
+  },
   cancelRequest () {
     if (typeof cancel === 'function') {
       cancel()

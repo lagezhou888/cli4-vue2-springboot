@@ -1,13 +1,6 @@
 <template>
   <div>
-    <van-uploader v-model="fileList" max-count="1" result-type="file">
-      <template #preview-cover="{ file }">
-        <div class="preview-cover van-ellipsis">{{ file.name }}</div>
-      </template>
-    </van-uploader>
-    <van-button round block type="info" @click="saveImg()">
-      保存
-    </van-button>
+    <van-uploader v-model="fileList" :after-read="onRead" max-count="1" result-type="file" @delete="deleteIcon()"></van-uploader>
   </div>
 </template>
 
@@ -20,11 +13,32 @@ export default {
       fileList: []
     }
   },
-  methods: {
-    saveImg () {
-      if (this.fileList.length > 0) {
-        console.log(this.fileList)
+  created () {
+    this.$Api.Config.getHeadIcon(localStorage.getItem('userId')).then((res) => {
+      if (res.data != null && res.data.length !== 0) {
+        this.fileList = [{ url: res.data }]
+      } else {
+        this.fileList = []
       }
+    })
+  },
+  methods: {
+    onRead (file) {
+      const that = this
+      const formData = new FormData()
+      formData.append('file', file.file)
+      formData.append('url', 'http://localhost:8080')
+      formData.append('userId', localStorage.getItem('userId'))
+      this.$Api.Config.uploadImg(formData).then((res) => {
+        that.fileList = [{ url: res.data }]
+      })
+    },
+    deleteIcon () {
+      this.$Api.Config.deleteHeadIcon(localStorage.getItem('userId')).then((res) => {
+        if (res.data) {
+          this.fileList = []
+        }
+      })
     }
   }
 }

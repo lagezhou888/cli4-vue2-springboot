@@ -21,6 +21,16 @@ const User = {
       }
     )
   },
+  updateUserInfo (data) {
+    return HTTP.put(
+      '/api/userController/modify', data,
+      {
+        cancelToken: new CancelToken(function executor (c) {
+          cancel = c
+        })
+      }
+    )
+  },
   cancelRequest () {
     if (typeof cancel === 'function') {
       cancel()

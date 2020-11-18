@@ -38,7 +38,41 @@
             </div>
           </div>
         </van-tab>
-        <van-tab title="快捷登录" name="code">
+        <van-tab title="注册" name="code">
+          <van-field class="form-van-field"
+                     v-model="registerAccount"
+                     name="用户名"
+                     label="用户名"
+                     placeholder="用户名"
+                     input-align="left"
+                     :rules="[{ required: true, message: '请填写用户名' }]"
+          />
+          <van-field class="form-van-field"
+                     v-model="registerPassword"
+                     type="password"
+                     name="密码"
+                     label="密码"
+                     placeholder="密码"
+                     input-align="left"
+                     :rules="[{ required: true, message: '请填写密码' }]"
+          />
+          <van-field class="form-van-field"
+                     v-model="confirmPassword"
+                     type="confirmPassword"
+                     name="确认密码"
+                     label="确认密码"
+                     placeholder="确认密码"
+                     input-align="left"
+                     :rules="[{ required: true, message: '请填写密码' }]"
+          />
+          <van-field name="radio" label="性别">
+            <template #input>
+              <van-radio-group v-model="sex" direction="horizontal">
+                <van-radio name="1">男</van-radio>
+                <van-radio name="2">女</van-radio>
+              </van-radio-group>
+            </template>
+          </van-field>
           <van-field
             v-model="verifycode"
             center
@@ -74,7 +108,12 @@ export default {
       password: '',
       verifycode: '',
       rightCode: '',
-      activeName: 'account'
+      activeName: 'account',
+      registerAccount: '',
+      registerPassword: '',
+      confirmPassword: '',
+      sex: '',
+      age: ''
     }
   },
   methods: {
@@ -105,7 +144,9 @@ export default {
         password: this.password
       }
       this.$Api.User.login(params).then((res) => {
+        console.log(res.data)
         localStorage.setItem('userId', res.data.id)
+        localStorage.setItem('account', res.data.account)
         that.$router.push('/about')
       }).catch((err) => {
         this.$toast(err.msg)

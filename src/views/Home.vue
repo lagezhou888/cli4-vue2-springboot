@@ -10,7 +10,7 @@
                 name="用户名"
                 label=""
                 placeholder="用户名"
-                         input-align="center"
+                input-align="center"
                 :rules="[{ required: true, message: '请填写用户名' }]"
               />
               <van-field class="form-van-field"
@@ -69,10 +69,18 @@
             <template #input>
               <van-radio-group v-model="sex" direction="horizontal">
                 <van-radio name="1">男</van-radio>
-                <van-radio name="2">女</van-radio>
+                <van-radio name="0">女</van-radio>
               </van-radio-group>
             </template>
           </van-field>
+          <van-field class="form-van-field"
+                     v-model="registerAccount"
+                     name="年龄"
+                     label="年龄"
+                     placeholder="年龄"
+                     input-align="left"
+                     :rules="[{ required: true, message: '请填写年龄' }]"
+          />
           <van-field
             v-model="verifycode"
             center
@@ -81,7 +89,7 @@
             placeholder="请输入验证码"
           >
             <div slot="button">
-              <img class="validate-code" src="../assets/validateCode/line.png"  @click="getVerifyCode"/>
+              <img class="validate-code" :src="codeSrc"  @click="getVerifyCode"/>
             </div>
           </van-field>
           <div class="form-button-login">
@@ -112,8 +120,9 @@ export default {
       registerAccount: '',
       registerPassword: '',
       confirmPassword: '',
-      sex: '',
-      age: ''
+      sex: '1',
+      age: '',
+      codeSrc: ''
     }
   },
   methods: {
@@ -131,8 +140,9 @@ export default {
     },
     getVerifyCode () {
       const that = this
-      this.$Api.User.getVerifyCode().then((res) => {
-        that.rightCode = res.data
+      this.$Api.User.getVerifyCode('http://localhost:8080').then((res) => {
+        that.rightCode = res.data.code
+        that.codeSrc = res.data.url
       }).catch((err) => {
         this.$toast(err.msg)
       })

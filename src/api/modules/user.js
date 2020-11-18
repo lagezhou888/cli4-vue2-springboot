@@ -11,9 +11,9 @@ const User = {
       })
     })
   },
-  getVerifyCode () {
+  getVerifyCode (url) {
     return HTTP.get(
-      '/api/userController/getVerifyCode',
+      `/api/userController/getVerifyCode?url=${url}`,
       {
         cancelToken: new CancelToken(function executor (c) {
           cancel = c

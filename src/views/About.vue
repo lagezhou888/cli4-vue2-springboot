@@ -1,9 +1,11 @@
 <template>
   <div>
-    <van-notice-bar
-      left-icon="volume-o"
-      text="枣园村苹果收购价5块一斤，5块一斤，贩子的需求量5万斤，抓紧摘苹果卖呀"
-    />
+    <van-sticky>
+      <van-notice-bar
+        left-icon="volume-o"
+        text="枣园村苹果收购价5块一斤，5块一斤，贩子的需求量5万斤，抓紧摘苹果卖呀"
+      />
+    </van-sticky>
     <router-view />
     <van-tabbar v-model="active" active-color="#07c160" inactive-color="#000" @change="onChange" route>
       <van-tabbar-item replace to="/userhome" icon="home-o">首页</van-tabbar-item>

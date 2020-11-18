@@ -34,7 +34,10 @@ import {
   SwipeItem,
   Col,
   Row,
-  Uploader
+  Uploader,
+  Sticky,
+  RadioGroup,
+  Radio
 } from 'vant'
 
 Vue.use(Tabs)
@@ -72,6 +75,9 @@ Vue.use(SwipeItem)
 Vue.use(Col)
 Vue.use(Row)
 Vue.use(Uploader)
+Vue.use(Sticky)
+Vue.use(RadioGroup)
+Vue.use(Radio)
 Vue.use(Lazyload, {
   lazyComponent: true
 })

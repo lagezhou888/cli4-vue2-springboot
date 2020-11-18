@@ -14,11 +14,12 @@ export default {
     }
   },
   created () {
-    this.$Api.Config.getHeadIcon(localStorage.getItem('userId')).then((res) => {
+    const that = this
+    that.$Api.Config.getHeadIcon(localStorage.getItem('userId')).then((res) => {
       if (res.data != null && res.data.length !== 0) {
-        this.fileList = [{ url: res.data }]
+        that.fileList = [{ url: res.data }]
       } else {
-        this.fileList = []
+        that.fileList = []
       }
     })
   },

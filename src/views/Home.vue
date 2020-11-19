@@ -134,7 +134,7 @@ export default {
           const param = { age: +this.age, sex: this.sex, account: this.registerAccount, password: this.registerPassword }
           this.$Api.User.registerUser(param).then((res) => {
             localStorage.setItem('userId', res.data.id)
-            localStorage.setItem('account', res.data.account)
+            localStorage.setItem('name', res.data.name)
             this.$router.push('/userhome')
           })
         } else {
@@ -160,7 +160,7 @@ export default {
       }
       this.$Api.User.login(params).then((res) => {
         localStorage.setItem('userId', res.data.id)
-        localStorage.setItem('account', res.data.account)
+        localStorage.setItem('name', res.data.name)
         that.$router.push('/about')
       }).catch((err) => {
         this.$toast(err.msg)

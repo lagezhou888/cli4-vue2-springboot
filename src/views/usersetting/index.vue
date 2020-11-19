@@ -2,13 +2,12 @@
   <div class="content">
     <div class="content-title">
       <div class="content-icon"><upload></upload></div>
-      <div class="content-font">{{account}}</div>
+      <div class="content-font">{{name}}</div>
     </div>
     <div class="content-cell">
       <van-cell-group>
         <van-cell title="昵称修改" is-link to="usermodify" />
-        <van-cell title="单元格" is-link value="内容" />
-        <van-cell title="单元格" is-link arrow-direction="down" value="内容" />
+        <van-cell title="资产设置" is-link to="userasset" />
       </van-cell-group>
     </div>
   </div>
@@ -20,7 +19,7 @@ export default {
   name: 'index',
   data () {
     return {
-      account: localStorage.getItem('account')
+      name: localStorage.getItem('name')
     }
   },
   components: {

@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'upload',
+  name: 'navbar',
   data () {
     return {
       file: null,
@@ -46,15 +46,15 @@ export default {
 </script>
 
 <style lang="less" scoped>
-  .preview-cover {
-    position: absolute;
-    bottom: 0;
-    box-sizing: border-box;
-    width: 100%;
-    padding: 4px;
-    color: #fff;
-    font-size: 12px;
-    text-align: center;
-    background: rgba(0, 0, 0, 0.3);
-  }
+.preview-cover {
+  position: absolute;
+  bottom: 0;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 4px;
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.3);
+}
 </style>

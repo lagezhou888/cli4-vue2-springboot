@@ -15,6 +15,7 @@ export default {
   },
   created () {
     const that = this
+    console.log(localStorage.getItem('userId'))
     that.$Api.Config.getHeadIcon(localStorage.getItem('userId')).then((res) => {
       if (res.data != null && res.data.length !== 0) {
         that.fileList = [{ url: res.data }]

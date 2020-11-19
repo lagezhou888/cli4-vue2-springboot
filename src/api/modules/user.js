@@ -31,6 +31,13 @@ const User = {
       }
     )
   },
+  registerUser (data) {
+    return HTTP.post('/api/userController/register', data, {
+      cancelToken: new CancelToken(function executor (c) {
+        cancel = c
+      })
+    })
+  },
   cancelRequest () {
     if (typeof cancel === 'function') {
       cancel()

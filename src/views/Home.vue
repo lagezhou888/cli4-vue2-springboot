@@ -56,15 +56,15 @@
                      input-align="left"
                      :rules="[{ required: true, message: '请填写密码' }]"
           />
-          <van-field class="form-van-field"
-                     v-model="confirmPassword"
-                     type="confirmPassword"
-                     name="确认密码"
-                     label="确认密码"
-                     placeholder="确认密码"
-                     input-align="left"
-                     :rules="[{ required: true, message: '请填写密码' }]"
-          />
+<!--          <van-field class="form-van-field"-->
+<!--                     v-model="confirmPassword"-->
+<!--                     type="confirmPassword"-->
+<!--                     name="确认密码"-->
+<!--                     label="确认密码"-->
+<!--                     placeholder="确认密码"-->
+<!--                     input-align="left"-->
+<!--                     :rules="[{ required: true, message: '请填写密码' }]"-->
+<!--          />-->
           <van-field name="radio" label="性别">
             <template #input>
               <van-radio-group v-model="sex" direction="horizontal">
@@ -74,12 +74,12 @@
             </template>
           </van-field>
           <van-field class="form-van-field"
-                     v-model="registerAccount"
+                     v-model="age"
                      name="年龄"
                      label="年龄"
                      placeholder="年龄"
                      input-align="left"
-                     :rules="[{ required: true, message: '请填写年龄' }]"
+                     :rules="[{ required: true, message: '请填写年龄'}]"
           />
           <van-field
             v-model="verifycode"
@@ -94,7 +94,7 @@
           </van-field>
           <div class="form-button-login">
             <van-button round block type="info" @click="codeSubmit()">
-              登录
+              注册
             </van-button>
           </div>
         </van-tab>
@@ -119,7 +119,7 @@ export default {
       activeName: 'account',
       registerAccount: '',
       registerPassword: '',
-      confirmPassword: '',
+      // confirmPassword: '',
       sex: '1',
       age: '',
       codeSrc: ''
@@ -131,7 +131,12 @@ export default {
         this.$toast('请输入验证码')
       } else {
         if (this.verifycode === this.rightCode) {
-          this.$router.push('/userhome')
+          const param = { age: +this.age, sex: this.sex, account: this.registerAccount, password: this.registerPassword }
+          this.$Api.User.registerUser(param).then((res) => {
+            localStorage.setItem('userId', res.data.id)
+            localStorage.setItem('account', res.data.account)
+            this.$router.push('/userhome')
+          })
         } else {
           this.$toast('验证码错误')
           this.getVerifyCode()
@@ -154,7 +159,6 @@ export default {
         password: this.password
       }
       this.$Api.User.login(params).then((res) => {
-        console.log(res.data)
         localStorage.setItem('userId', res.data.id)
         localStorage.setItem('account', res.data.account)
         that.$router.push('/about')

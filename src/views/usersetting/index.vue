@@ -6,7 +6,7 @@
     </div>
     <div class="content-cell">
       <van-cell-group>
-        <van-cell title="用户名修改" is-link to="usermodify" />
+        <van-cell title="昵称修改" is-link to="usermodify" />
         <van-cell title="单元格" is-link value="内容" />
         <van-cell title="单元格" is-link arrow-direction="down" value="内容" />
       </van-cell-group>

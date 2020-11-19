@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <div class="content-title">
-      <div class="content-icon"><upload></upload></div>
+      <div class="content-icon"><upload :url="url"></upload></div>
       <div class="content-font">{{name}}</div>
     </div>
     <div class="content-cell">
@@ -19,7 +19,24 @@ export default {
   name: 'index',
   data () {
     return {
+      url: '',
       name: localStorage.getItem('name')
+    }
+  },
+  created () {
+    this.userId = localStorage.getItem('userId')
+    this.init()
+  },
+  methods: {
+    init () {
+      const that = this
+      that.$Api.Config.getHeadIcon(that.userId).then((res) => {
+        if (res.data != null && res.data.length !== 0) {
+          that.url = res.data
+        } else {
+          that.url = ''
+        }
+      })
     }
   },
   components: {

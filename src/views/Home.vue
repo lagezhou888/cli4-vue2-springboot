@@ -145,7 +145,7 @@ export default {
     },
     getVerifyCode () {
       const that = this
-      this.$Api.User.getVerifyCode('http://localhost:8080').then((res) => {
+      this.$Api.User.getVerifyCode().then((res) => {
         that.rightCode = res.data.code
         that.codeSrc = res.data.url
       }).catch((err) => {

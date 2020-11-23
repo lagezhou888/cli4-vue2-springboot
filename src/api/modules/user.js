@@ -11,9 +11,9 @@ const User = {
       })
     })
   },
-  getVerifyCode (url) {
+  getVerifyCode () {
     return HTTP.get(
-      `/api/userController/getVerifyCode?url=${url}`,
+      '/api/userController/getVerifyCode?url=' + window.location.protocol + '//' + window.location.host,
       {
         cancelToken: new CancelToken(function executor (c) {
           cancel = c

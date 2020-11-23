@@ -72,6 +72,7 @@ HTTP.interceptors.request.use(
     // token && (config.headers.Authorization = token)
     // 序列化post请求
     // if (config.method === 'post') config.data = qs.stringify(config.data)
+    config.headers.Authorization = document.cookie.substring(6)
     return config
   },
   error => {

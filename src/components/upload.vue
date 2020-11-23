@@ -43,7 +43,7 @@ export default {
       const that = this
       const formData = new FormData()
       formData.append('file', file.file)
-      formData.append('url', 'http://192.168.31.94:8080')
+      formData.append('url', window.location.protocol + '//' + window.location.host)
       formData.append('userId', localStorage.getItem('userId'))
       this.$Api.Config.uploadImg(formData).then((res) => {
         that.fileList = [{ url: res.data }]

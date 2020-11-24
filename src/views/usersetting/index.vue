@@ -6,8 +6,9 @@
     </div>
     <div class="content-cell">
       <van-cell-group>
-        <van-cell title="昵称修改" is-link to="usermodify" />
-        <van-cell title="资产设置" is-link to="userasset" />
+        <van-cell title="个人信息" is-link to="userinfo" />
+<!--        <van-cell title="昵称修改" is-link to="usermodify" />-->
+<!--        <van-cell title="资产设置" is-link to="userasset" />-->
       </van-cell-group>
     </div>
   </div>
@@ -68,6 +69,7 @@ export default {
       }
     }
     .content-cell {
+      text-align: left;
     }
   }
 </style>

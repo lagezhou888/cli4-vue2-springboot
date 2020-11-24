@@ -1,17 +1,27 @@
 <template>
   <div>
-    <van-cell-group>
-      <van-field v-model="nickName" label="输入新昵称" placeholder="请输入昵称" />
-    </van-cell-group>
-    <van-button round block type="info" @click="submit">
-      确认修改
-    </van-button>
+    <navbar-head
+      title="个人信息"
+      to="/usersetting">
+    </navbar-head>
+    <div class="content-cell">
+      <van-cell-group>
+        <van-field v-model="nickName" label="输入新昵称" placeholder="请输入昵称" />
+      </van-cell-group>
+    </div>
+    <div class="content-button">
+      <van-button round block type="info" @click="submit">
+        确认修改
+      </van-button>
+    </div>
   </div>
 </template>
 
 <script>
+import NavbarHead from '@/components/navbar-head'
 export default {
   name: 'index',
+  components: { NavbarHead },
   data () {
     return {
       nickName: ''
@@ -42,6 +52,13 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lagn="less" scoped>
+  .content-cell {
 
+  }
+  .content-button {
+    margin-top: 20px;
+    margin-left: 36px;
+    margin-right: 36px;
+  }
 </style>

@@ -2,7 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Demo from '../demo/index'
-import UserModify from '../views/usermodify/index'
 Vue.use(VueRouter)
 
 const routes = [
@@ -40,7 +39,17 @@ const routes = [
   {
     path: '/usermodify',
     name: 'usermodify',
-    component: UserModify
+    component: () => import('@/views/usersetting/usermodify')
+  },
+  {
+    path: '/userasset',
+    name: 'userasset',
+    component: () => import('@/views/usersetting/userasset')
+  },
+  {
+    path: '/userinfo',
+    name: 'userinfo',
+    component: () => import('@/views/usersetting/userinfo')
   },
   {
     path: '/demo',

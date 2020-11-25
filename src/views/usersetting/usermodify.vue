@@ -33,7 +33,9 @@ export default {
   },
   methods: {
     submit () {
-      if (this.name === this.nickName) {
+      if (this.nickName === '') {
+        this.$router.push('/usersetting')
+      } else if (this.name === this.nickName) {
         this.$toast('不能和原昵称一样')
       } else {
         const param = {

@@ -8,7 +8,7 @@
     <div v-if="cellSwitchChecked">
       <van-cell center :title="typeTitle" :value="typeValue" :label="typeLabel" :arrow-direction="arrowDirection" is-link @click="arrowDirectionClick"/>
       <div v-show="arrowDirectionFlag">
-        <van-checkbox-group v-model="typeSelected">
+        <van-checkbox-group v-model="cellTypeSelected">
           <van-cell-group>
             <van-cell
               v-for="(item, index) in typeList"
@@ -35,24 +35,32 @@ export default {
     return {
       cellTitle: '不种植' + this.title,
       cellSwitchChecked: false,
-      typeSelected: [],
+      cellTypeSelected: [],
       arrowDirection: 'down',
       arrowDirectionFlag: true
     }
   },
   watch: {
     cellSwitchChecked (newValue) {
-      if (this.switchChecked) {
-        this.typeSelected = []
-      }
-      this.cellTitle = (this.switchChecked === true ? '不种植' : '种植') + this.title
       this.$emit('switchChecked', newValue, this.title)
     },
+    switchChecked (newValue) {
+      if (!this.switchChecked) {
+        this.cellTypeSelected = []
+      }
+      this.cellTitle = (this.switchChecked === true ? '种植' : '不种植') + this.title
+      this.cellSwitchChecked = this.switchChecked
+    },
+    cellTypeSelected (newValue) {
+      this.$emit('typeSelected', this.cellTypeSelected, this.title)
+    },
     typeSelected (newValue) {
-      this.$emit('typeSelected', this.typeSelected, this.title)
+      this.cellTypeSelected = newValue
     }
   },
   methods: {
+    init () {
+    },
     toggle (index) {
       this.$refs.checkboxes[index].toggle()
     },
@@ -69,6 +77,12 @@ export default {
     switchChecked: {
       type: Boolean,
       default: true
+    },
+    typeSelected: {
+      type: Array,
+      default () {
+        return []
+      }
     },
     typeList: {
       type: Array,

@@ -38,6 +38,16 @@ const User = {
       })
     })
   },
+  getUserList () {
+    return HTTP.get(
+      '/api/userController/list',
+      {
+        cancelToken: new CancelToken(function executor (c) {
+          cancel = c
+        })
+      }
+    )
+  },
   cancelRequest () {
     if (typeof cancel === 'function') {
       cancel()

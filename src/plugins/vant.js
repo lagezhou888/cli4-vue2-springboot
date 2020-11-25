@@ -37,7 +37,9 @@ import {
   Uploader,
   Sticky,
   RadioGroup,
-  Radio
+  Radio,
+  Dialog,
+  Popover
 } from 'vant'
 
 Vue.use(Tabs)
@@ -78,6 +80,8 @@ Vue.use(Uploader)
 Vue.use(Sticky)
 Vue.use(RadioGroup)
 Vue.use(Radio)
+Vue.use(Dialog)
+Vue.use(Popover)
 Vue.use(Lazyload, {
   lazyComponent: true
 })

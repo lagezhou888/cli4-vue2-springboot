@@ -5,8 +5,8 @@
       to="/usersetting">
     </navbar-head>
     <van-cell-group>
-      <van-cell title="昵称修改" is-link to="usermodify" />
-      <van-cell title="资产设置" is-link to="userasset" />
+      <van-cell title="昵称修改" is-link to="usermodify" icon="new-o" color="yellow" />
+      <van-cell title="资产设置" is-link to="userasset" icon="setting-o" color="blue" />
     </van-cell-group>
   </div>
 </template>

@@ -23,6 +23,7 @@
 <script>
 import Card from '@/components/card'
 import Echarts from '@/components/echarts'
+import { appleTypeList, cherryTypeList } from '@/common/config'
 export default {
   name: 'index',
   components: {
@@ -30,12 +31,11 @@ export default {
     Card
   },
   created () {
-    this.$Api.Config.getAllConfig().then((res) => {
-      this.time = res.data
-    })
+    this.init()
   },
   data () {
     return {
+      userCount: 0,
       chartData: {
         columns: ['品种', '数量', '成交均价'],
         rows: [{ 品种: '富士', 数量: 1393, 成交均价: 2.3 },
@@ -56,27 +56,37 @@ export default {
         'https://img.yzcdn.cn/vant/apple-1.jpg',
         'https://img.yzcdn.cn/vant/apple-2.jpg'
       ],
-      dataDetails: [{
-        icon: 'contact',
-        iconColor: 'blue',
-        type: '总户数',
-        value: '233户'
-      }, {
-        icon: 'flower-o',
-        iconColor: 'red',
-        type: '果树总量',
-        value: '5888颗'
-      }, {
-        icon: 'logistics',
-        iconColor: 'green',
-        type: '快递点数量',
-        value: '5个'
-      }, {
-        icon: 'bill-o',
-        iconColor: 'grey',
-        type: '2020年产值',
-        value: '10亿'
-      }]
+      dataDetails: []
+    }
+  },
+  methods: {
+    init () {
+      this.$Api.Config.getAllConfig().then((res) => {
+        this.time = res.data
+      })
+      this.$Api.User.getUserList().then((res) => {
+        this.dataDetails = [{
+          icon: 'contact',
+          iconColor: 'blue',
+          type: '总户数',
+          value: res.data
+        }, {
+          icon: 'flower-o',
+          iconColor: 'red',
+          type: '果树总量',
+          value: '0颗'
+        }, {
+          icon: 'logistics',
+          iconColor: 'green',
+          type: '快递点数量',
+          value: '0个'
+        }, {
+          icon: 'bill-o',
+          iconColor: 'grey',
+          type: '2020年产值',
+          value: '0亿'
+        }]
+      })
     }
   }
 }

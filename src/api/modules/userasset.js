@@ -11,6 +11,13 @@ const UserAsset = {
       })
     })
   },
+  getList (userId) {
+    return HTTP.get(`/api/userasset/${userId}`, {
+      cancelToken: new CancelToken(function executor (c) {
+        cancel = c
+      })
+    })
+  },
   cancelRequest () {
     if (typeof cancel === 'function') {
       cancel()

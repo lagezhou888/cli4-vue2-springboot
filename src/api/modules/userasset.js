@@ -18,6 +18,13 @@ const UserAsset = {
       })
     })
   },
+  getChartData (data) {
+    return HTTP.post('/api/userasset/getChartData', data, {
+      cancelToken: new CancelToken(function executor (c) {
+        cancel = c
+      })
+    })
+  },
   cancelRequest () {
     if (typeof cancel === 'function') {
       cancel()

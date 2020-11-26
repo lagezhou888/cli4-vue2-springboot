@@ -40,9 +40,7 @@
 <script>
 import NavbarHead from '@/components/navbar-head'
 import Checkbox from '@/components/checkbox'
-import { appleTypeList, cherryTypeList } from '@/common/config'
-const FRUIT_APPLE = '苹果'
-const FRUIT_CHERRY = '樱桃'
+import { appleTypeList, cherryTypeList, FRUIT_APPLE, FRUIT_CHERRY } from '@/common/config'
 export default {
   name: 'index',
   components: { Checkbox, NavbarHead },

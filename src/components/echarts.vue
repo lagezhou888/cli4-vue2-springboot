@@ -3,9 +3,9 @@
     <div class="content-title">
       <div class="content-title-icon"></div><div class="content-title-font">种类汇总</div>
       <div class="content-title-select">
-        <van-popover v-model="showPopover" :actions="actions" @select="onSelect">
+        <van-popover v-model="showPopover" :actions="actions" @select="onSelect" placement="left" theme="dark">
           <template #reference>
-            <van-button type="primary" @click="showPopover = true">
+            <van-button type="primary" @click="showPopover = true" color="#00A1BA">
               {{ popoverTitle }}
             </van-button>
           </template>
@@ -19,20 +19,30 @@
 </template>
 
 <script>
+import { FRUIT_APPLE, FRUIT_CHERRY } from '@/common/config'
 export default {
   name: 'echarts',
   data () {
     return {
-      popoverTitle: '苹果',
+      popoverTitle: FRUIT_APPLE,
       showPopover: false,
       actions: [
-        { text: '苹果' },
-        { text: '樱桃' }
+        { text: FRUIT_APPLE },
+        { text: FRUIT_CHERRY }
       ],
       legend: { show: false },
       extend: {
         series: {
           label: { show: true, position: 'top' }
+        },
+        xAxis: {
+          axisLabel: {
+            interval: 0,
+            formatter: function (value) {
+              const str = value.split('')
+              return str.join('\n')
+            }
+          }
         }
       }
     }
@@ -44,8 +54,13 @@ export default {
     init () {
     },
     onSelect (action) {
-      // this.$toast(action.text)
       this.popoverTitle = action.text
+      this.$emit('popoverOnSelect', this.popoverTitle)
+    }
+  },
+  watch: {
+    chartData (newValue) {
+      console.log(newValue)
     }
   },
   props: {

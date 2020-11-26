@@ -17,3 +17,5 @@ export const cherryTypeList = Object.freeze([
   { id: 7, label: '黄灯', value: '黄灯' },
   { id: 8, label: '萨米脱', value: '萨米脱' }
 ])
+export const FRUIT_APPLE = '苹果'
+export const FRUIT_CHERRY = '樱桃'

@@ -39,7 +39,11 @@ import {
   RadioGroup,
   Radio,
   Dialog,
-  Popover
+  Popover,
+  IndexBar,
+  IndexAnchor,
+  SwipeCell,
+  Card
 } from 'vant'
 
 Vue.use(Tabs)
@@ -82,6 +86,10 @@ Vue.use(RadioGroup)
 Vue.use(Radio)
 Vue.use(Dialog)
 Vue.use(Popover)
+Vue.use(IndexBar)
+Vue.use(IndexAnchor)
+Vue.use(SwipeCell)
+Vue.use(Card)
 Vue.use(Lazyload, {
   lazyComponent: true
 })

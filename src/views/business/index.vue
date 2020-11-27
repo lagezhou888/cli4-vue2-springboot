@@ -1,88 +1,107 @@
 <template>
   <div class="page">
-    <van-search v-model="value" placeholder="搜索商家"/>
-    <van-index-bar :index-list="indexList">
+    <van-sticky :offset-top="40">
+      <van-search v-model="searchValue" placeholder="搜索商家"/>
+    </van-sticky>
+    <van-index-bar :sticky="false">
       <van-list
         v-model="loading"
         :finished="finished"
         finished-text="没有更多了"
         @load="onLoad">
-        <!--<van-cell v-for="item in list" :key="item" :title="item" />-->
-        <van-index-anchor class="page-bar-anchor" index="A">A</van-index-anchor>
-        <van-swipe-cell class="page-bar-swipe-cell">
-          <van-card
-            desc="东北人"
-            title="张三"
-            class="goods-card"
-            thumb="https://img.yzcdn.cn/vant/cat.jpeg"
-          />
-          <template #right>
-            <van-button square text="关注" type="primary" class="delete-button" />
-          </template>
-          <template #left>
-            <van-button square text="拉黑" type="danger" class="delete-button" />
-          </template>
-        </van-swipe-cell>
-        <van-index-anchor class="page-bar-anchor" index="B">B</van-index-anchor>
-        <van-swipe-cell>
-          <van-card
-            desc="山东人"
-            title="王五"
-            class="goods-card"
-            thumb="https://img.yzcdn.cn/vant/cat.jpeg"
-          />
-          <template #right>
-            <van-button square text="拉黑" type="danger" class="delete-button" />
-            <van-button square text="关注" type="primary" class="delete-button" />
-          </template>
-        </van-swipe-cell>
-        <van-index-anchor class="page-bar-anchor" index="C">C</van-index-anchor>
-        <van-cell title="文本C" />
-        <van-cell title="文本C" />
-        <van-cell title="文本C" />
-        <van-index-anchor class="page-bar-anchor" index="D">D</van-index-anchor>
-        <van-cell title="文本D" />
-        <van-cell title="文本D" />
-        <van-cell title="文本D" />
-        <van-index-anchor class="page-bar-anchor" index="E">E</van-index-anchor>
-        <van-cell title="文本E" />
-        <van-cell title="文本E" />
-        <van-cell title="文本E" />
-        <van-index-anchor class="page-bar-anchor" index="F">F</van-index-anchor>
-        <van-cell title="文本F" />
-        <van-cell title="文本F" />
-        <van-cell title="文本F" />
+        <div v-for="(value, key) in list" :key="key">
+          <van-index-anchor class="page-bar-anchor" :index="key"></van-index-anchor>
+            <div v-for="(item, index) in value" :key="index">
+              <van-swipe-cell class="page-bar-swipe-cell">
+                <van-card
+                  tag="⭐"
+                  :desc="item.phone"
+                  :title="item.name"
+                  class="goods-card"
+                  thumb="https://img.yzcdn.cn/vant/cat.jpeg">
+                  <template #tags>
+                    <van-tag plain type="danger">标签</van-tag>
+                  </template>
+                  <template #footer>
+                    <van-button size="mini">发消息</van-button>
+                  </template>
+                </van-card>
+                <template #right>
+                  <van-button square text="拉黑" type="danger" class="delete-button" />
+                  <van-button square text="关注" type="primary" class="delete-button" />
+                </template>
+              </van-swipe-cell>
+            </div>
+        </div>
       </van-list>
     </van-index-bar>
   </div>
 </template>
 
 <script>
+import { FIRST_PIN } from '@/common/config'
 export default {
   name: 'index',
   components: {
   },
   data () {
     return {
-      list: [],
+      list: {},
       loading: false,
-      finished: false
+      finished: false,
+      searchValue: '',
+      page: 0,
+      size: 5
     }
   },
   methods: {
     onLoad () {
+      // const list = {
+      //   A: [{ name: '王五', age: 33 }, { name: '王六', age: 33 }],
+      //   B: [{ name: '张三', age: 33 }, { name: '张四', age: 33 }],
+      //   C: [{ name: '赵六', age: 33 }, { name: '赵七', age: 33 }],
+      //   D: [{ name: '王五', age: 33 }, { name: '王六', age: 33 }],
+      //   E: [{ name: '张三', age: 33 }, { name: '张四', age: 33 }],
+      //   F: [{ name: '赵六', age: 33 }, { name: '赵七', age: 33 }],
+      //   G: [{ name: '王五', age: 33 }, { name: '王六', age: 33 }],
+      //   H: [{ name: '张三', age: 33 }, { name: '张四', age: 33 }],
+      //   I: [{ name: '赵六', age: 33 }, { name: '赵七', age: 33 }],
+      //   J: [{ name: '王五', age: 33 }, { name: '王六', age: 33 }],
+      //   K: [{ name: '张三', age: 33 }, { name: '张四', age: 33 }],
+      //   L: [{ name: '赵六', age: 33 }, { name: '赵七', age: 33 }]
+      // }
+
+      this.loading = false
+      this.finished = true
       setTimeout(() => {
-        for (let i = 0; i < 10; i++) {
-          this.list.push(this.list.length + 1)
-        }
+        const list = [
+          { name: '王五', age: 33, pinyin: 'W', phone: '13333333333' },
+          { name: '王六', age: 33, pinyin: 'W', phone: '13333333333' },
+          { name: '张三', age: 33, pinyin: 'Z', phone: '13333333333' },
+          { name: '张四', age: 33, pinyin: 'Z', phone: '13333333333' },
+          { name: '赵六', age: 33, pinyin: 'Z', phone: '13333333333' },
+          { name: '赵七', age: 33, pinyin: 'Z', phone: '13333333333' }
+        ]
+        const listName = {}
+        FIRST_PIN.forEach(item => {
+          listName[item] = []
+          list.forEach(model => {
+            if (model.pinyin === item) {
+              listName[item].push(model)
+            }
+          })
+        })
+        this.$nextTick(() => {
+          this.list = listName
+        })
+        // for (let i = 0; i < 10; i++) {
+        //   this.list.push(this.list.length + 1)
+        // }
 
         // 加载状态结束
         this.loading = false
-
         // 数据全部加载完成
-        if (this.list.length >= 40) {
-          this.finished = true
-        }
+        this.finished = true
       }, 1000)
     }
   }
@@ -108,6 +127,25 @@ export default {
   }
   /deep/ .van-swipe-cell__left {
     padding-left: 20px;
+  }
+  /deep/ .van-card__content {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+  }
+  /deep/ .van-card__title {
+    margin-left: 10px;
+    flex: 1;
+  }
+  /deep/ .van-card__desc {
+    margin-top: 8px;
+    margin-left: 10px;
+    flex: 1;
+  }
+  /deep/ .van-tag{
+    margin-top: 8px;
+    margin-left: 10px;
+    flex: 1;
   }
   .goods-card {
     margin: 0;

@@ -8,7 +8,7 @@ module.exports = {
     disableHostCheck: true, // 解决内网穿透Invalid Host header的问题
     proxy: {
       '/api': {
-        target: 'http://192.168.31.94:8888',
+        target: 'http://172.20.10.73:8888',
         changeOrigin: true
       }
     }

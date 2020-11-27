@@ -19,3 +19,4 @@ export const cherryTypeList = Object.freeze([
 ])
 export const FRUIT_APPLE = '苹果'
 export const FRUIT_CHERRY = '樱桃'
+export const FIRST_PIN = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']

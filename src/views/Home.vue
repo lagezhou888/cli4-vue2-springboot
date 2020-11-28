@@ -32,8 +32,8 @@
           <div class="third-login">
             <div class="third-login-label">第三方登录</div>
             <div class="third-login-logo">
-              <div class="logo-left"><van-icon class="iconfont" class-prefix='icon-weibo' name="" color="#d81e06" size="50"/></div>
-              <div class="logo-center"><van-icon class="iconfont" class-prefix='icon-sign_wechat' name="" color="#07c160" size="50"/></div>
+              <div class="logo-left"><van-icon class="iconfont" class-prefix='icon-weibo1' name="" color="#d81e06" size="50"/></div>
+              <div class="logo-center"><van-icon class="iconfont" class-prefix='icon-wechat' name="" color="#07c160" size="50"/></div>
               <div class="logo-right"><van-icon class="iconfont" class-prefix='icon-qq' name="" color="#1296db" size="50"/></div>
             </div>
           </div>

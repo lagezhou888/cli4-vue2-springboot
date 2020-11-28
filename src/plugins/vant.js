@@ -44,7 +44,8 @@ import {
   IndexAnchor,
   SwipeCell,
   Card,
-  Tag
+  Tag,
+  Progress
 } from 'vant'
 
 Vue.use(Tabs)
@@ -92,6 +93,7 @@ Vue.use(IndexAnchor)
 Vue.use(SwipeCell)
 Vue.use(Card)
 Vue.use(Tag)
+Vue.use(Progress)
 Vue.use(Lazyload, {
   lazyComponent: true
 })

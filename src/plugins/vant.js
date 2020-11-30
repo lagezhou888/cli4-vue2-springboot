@@ -45,7 +45,8 @@ import {
   SwipeCell,
   Card,
   Tag,
-  Progress
+  Progress,
+  Image as VanImage
 } from 'vant'
 
 Vue.use(Tabs)
@@ -94,6 +95,7 @@ Vue.use(SwipeCell)
 Vue.use(Card)
 Vue.use(Tag)
 Vue.use(Progress)
+Vue.use(VanImage)
 Vue.use(Lazyload, {
   lazyComponent: true
 })

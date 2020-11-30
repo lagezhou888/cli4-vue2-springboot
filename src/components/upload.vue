@@ -6,6 +6,7 @@
       max-count="1"
       :max-size="10 * 1024 * 1024"
       result-type="file"
+      ref="vanUploader"
       @delete="deleteIcon()">
     </van-uploader>
   </div>
@@ -47,6 +48,7 @@ export default {
       formData.append('userId', localStorage.getItem('userId'))
       this.$Api.Config.uploadImg(formData).then((res) => {
         that.fileList = [{ url: res.data }]
+        that.$emit('uploadImgUrl', res.data)
       })
     },
     deleteIcon () {

@@ -28,7 +28,7 @@
                   </div>
                   <div class="template-tags-progress" v-if="item.isAcquisition">
                     <div class="template-tags-progress-text">收购进度：</div>
-                    <div class="template-tags-progress-div"><van-progress :percentage="50" track-color="grey" stroke-width="8" /></div>
+                    <div class="template-tags-progress-div"><van-progress :percentage="item.percentage" track-color="grey" stroke-width="8" /></div>
                   </diV>
                 </template>
               </van-card>
@@ -45,6 +45,7 @@
 </template>
 
 <script>
+const EVENT_ONLOAD = 'onLoad'
 export default {
   name: 'indexbar',
   data () {
@@ -60,8 +61,7 @@ export default {
   },
   methods: {
     onLoad () {
-      this.loading = false
-      this.finished = true
+      this.$emit(EVENT_ONLOAD)
     }
   },
   props: {

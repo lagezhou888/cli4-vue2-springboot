@@ -5,13 +5,13 @@
         <van-sticky :offset-top="40">
           <van-search v-model="searchValue" placeholder="搜索商家" @search="onSearch"/>
         </van-sticky>
-        <index-bar :list="list"></index-bar>
+        <index-bar :list="list" @onLoad="onLoad" ref="indexBar"></index-bar>
       </van-tab>
       <van-tab title="收购中" name="part">
         <van-sticky :offset-top="40">
           <van-search v-model="searchValue" placeholder="搜索商家"/>
         </van-sticky>
-        <index-bar :list="listPart"></index-bar>
+        <index-bar :list="listPart" @onLoad="onLoad" ref="indexBar"></index-bar>
       </van-tab>
     </van-tabs>
   </div>
@@ -30,38 +30,39 @@ export default {
       activeName: 'all',
       searchValue: '',
       list: {},
+      tempList: [],
       listPart: {},
       pageSetting: {
-        pageSize: 20,
+        pageSize: 2,
         pageNum: 0
       }
     }
   },
-  created () {
-    this.init()
-  },
   methods: {
+    onLoad () {
+      this.pageSetting.pageNum++
+      this.init()
+    },
     init () {
       const that = this
-      setTimeout(() => {
-        let tempList = [
-          { name: '王五', age: 33, pinyin: 'A', phone: '13333333333', tag: '靠谱', isAcquisition: true, imgUrl: 'https://img.yzcdn.cn/vant/cat.jpeg' },
-          { name: '王六', age: 33, pinyin: 'A', phone: '13333333333', tag: '黑心', isAcquisition: false, imgUrl: 'https://img.yzcdn.cn/vant/cat.jpeg' },
-          { name: '张三', age: 33, pinyin: 'Z', phone: '13333333333', tag: '温柔', isAcquisition: true, imgUrl: 'https://img.yzcdn.cn/vant/cat.jpeg' },
-          { name: '张四', age: 33, pinyin: 'Z', phone: '13333333333', tag: '给力', isAcquisition: false, imgUrl: 'https://img.yzcdn.cn/vant/cat.jpeg' },
-          { name: '赵六', age: 33, pinyin: 'Z', phone: '13333333333', tag: '火爆', isAcquisition: false, imgUrl: 'https://img.yzcdn.cn/vant/cat.jpeg' },
-          { name: '赵七', age: 33, pinyin: 'Z', phone: '13333333333', tag: '热心', isAcquisition: false, imgUrl: 'https://img.yzcdn.cn/vant/cat.jpeg' }
-        ]
+      const params = {
+        business: { },
+        pageNum: that.pageSetting.pageNum,
+        pageSize: that.pageSetting.pageSize
+      }
+      that.$Api.Business.getBusinessList(params).then((res) => {
+        that.tempList = that.tempList.concat(res.data.records)
         if (that.searchValue !== '') {
-          tempList = tempList.filter(item => item.name.indexOf(that.searchValue) !== -1)
+          that.tempList = that.tempList.filter(item => item.name.indexOf(that.searchValue) !== -1)
         }
         const listName = {}
         const listPartName = {}
         FIRST_PIN.forEach(item => {
           listName[item] = []
           listPartName[item] = []
-          tempList.forEach(model => {
+          that.tempList.forEach(model => {
             if (model.pinyin === item) {
+              model.percentage = Math.round(model.receivedNum / model.advanceNum * 100)
               listName[item].push(model)
               if (model.isAcquisition) {
                 listPartName[item].push(model)
@@ -73,6 +74,10 @@ export default {
           that.list = listName
           that.listPart = listPartName
         })
+        that.$refs.indexBar.loading = false
+        if (this.tempList.length >= res.data.total) {
+          that.$refs.indexBar.finished = true
+        }
       })
     },
     onSearch () {
@@ -80,10 +85,6 @@ export default {
       this.list = {}
       this.listPart = {}
       this.onLoad()
-    },
-    onLoad () {
-      this.pageSetting.pageNum++
-      this.init()
     }
   }
 }

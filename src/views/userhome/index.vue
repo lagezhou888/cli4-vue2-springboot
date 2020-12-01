@@ -1,5 +1,11 @@
 <template>
   <div>
+    <van-sticky>
+      <van-notice-bar
+          left-icon="volume-o"
+          text="枣园村苹果收购价5块一斤，5块一斤，贩子的需求量5万斤，抓紧摘苹果卖呀"
+      />
+    </van-sticky>
     <!--倒计时-->
     <div class="van-count-down">
       <label class="van-count-down-label">收购剩余时间：</label>

@@ -34,6 +34,7 @@ export default {
   },
   methods: {
     onClickLeft () {
+      // window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/')
       this.$router.push(this.to)
     },
     onClickRight () {

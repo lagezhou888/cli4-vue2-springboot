@@ -6,6 +6,76 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "695133",
+      "name": "发布",
+      "font_class": "fabu",
+      "unicode": "e631",
+      "unicode_decimal": 58929
+    },
+    {
+      "icon_id": "705807",
+      "name": "关注客户",
+      "font_class": "guanzhukehu",
+      "unicode": "e67d",
+      "unicode_decimal": 59005
+    },
+    {
+      "icon_id": "738194",
+      "name": "记录",
+      "font_class": "jilu",
+      "unicode": "e61f",
+      "unicode_decimal": 58911
+    },
+    {
+      "icon_id": "887909",
+      "name": "关注 (1)",
+      "font_class": "guanzhu1",
+      "unicode": "e61d",
+      "unicode_decimal": 58909
+    },
+    {
+      "icon_id": "978315",
+      "name": "发布",
+      "font_class": "fabu1",
+      "unicode": "e62f",
+      "unicode_decimal": 58927
+    },
+    {
+      "icon_id": "1287316",
+      "name": "图标_关注",
+      "font_class": "tubiao_guanzhu",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "2252525",
+      "name": "记录",
+      "font_class": "jilu1",
+      "unicode": "e6ef",
+      "unicode_decimal": 59119
+    },
+    {
+      "icon_id": "6638072",
+      "name": "关注选中",
+      "font_class": "guanzhuxuanzhong",
+      "unicode": "e62e",
+      "unicode_decimal": 58926
+    },
+    {
+      "icon_id": "7817985",
+      "name": "关注",
+      "font_class": "guanzhu",
+      "unicode": "e65f",
+      "unicode_decimal": 58975
+    },
+    {
+      "icon_id": "15097058",
+      "name": "关注",
+      "font_class": "guanzhu2",
+      "unicode": "e687",
+      "unicode_decimal": 59015
+    },
+    {
       "icon_id": "1002158",
       "name": "QQ",
       "font_class": "qq",

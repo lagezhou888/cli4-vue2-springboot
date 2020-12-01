@@ -18,6 +18,9 @@ export default {
   name: 'userinfo',
   components: { NavbarHead },
   methods: {
+    onClickLeft () {
+
+    }
   }
 }
 </script>

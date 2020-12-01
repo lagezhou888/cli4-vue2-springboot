@@ -1,39 +1,73 @@
 <template>
   <div class="content">
-    <div class="content-title">
-      <div class="content-icon">
-<!--        <van-uploader-->
-<!--          :after-read="onRead"-->
-<!--          max-count="1"-->
-<!--          :max-size="10 * 1024 * 1024"-->
-<!--          result-type="file"-->
-<!--          @delete="deleteIcon()">-->
-<!--          <van-image-->
-<!--            round-->
-<!--            width="80"-->
-<!--            height="80"-->
-<!--            fit="cover"-->
-<!--            :src="url"-->
-<!--          />-->
-<!--        </van-uploader>-->
-        <van-image
-          round
-          width="80"
-          height="80"
-          fit="cover"
-          :src="url"
-          @click="imgClick"
-        />
-        <van-image-preview ref="imagePreview" v-model="showPreview" :images="images" @change="showPreviewChange">
-          <template #index><div>llll页</div></template>
-        </van-image-preview>
-      </div>
-      <div class="content-font">{{name}}</div>
+    <div>
+      <van-sticky>
+        <div>
+          <van-nav-bar
+            title="个人中心"
+            @click-left="onClickLeft"
+          />
+        </div>
+      </van-sticky>
     </div>
-    <div class="content-cell">
-      <van-cell-group>
-        <van-cell title="个人信息" is-link to="userinfo" />
-      </van-cell-group>
+    <div class="content-title">
+      <div class="content-title-icon">
+        <van-uploader
+          :after-read="onRead"
+          max-count="1"
+          :max-size="10 * 1024 * 1024"
+          result-type="file"
+          @delete="deleteIcon()">
+          <van-image
+            round
+            width="80"
+            height="80"
+            fit="cover"
+            :src="url"
+          />
+        </van-uploader>
+<!--        <van-image-->
+<!--          round-->
+<!--          width="80"-->
+<!--          height="80"-->
+<!--          fit="cover"-->
+<!--          :src="url"-->
+<!--          @click="imgClick"-->
+<!--        />-->
+<!--        <van-nav-bar-->
+<!--          title="标题"-->
+<!--          left-text="返回"-->
+<!--          right-text="按钮"-->
+<!--          v-show="showPreview"-->
+<!--        />-->
+<!--        <div class="content-image-preview">-->
+<!--          <van-image-preview ref="imagePreview" v-model="showPreview" :images="images" @change="showPreviewChange">-->
+<!--            <template #index>-->
+<!--            </template>-->
+<!--          </van-image-preview>-->
+<!--        </div>-->
+      </div>
+      <!--显示昵称-->
+      <div class="content-title-font">{{name}}</div>
+      <div class="content-title-button"><van-button round type="info" @click="toUserInfo">编辑资料</van-button></div>
+    </div>
+<!--    <div class="content-cell">-->
+<!--      <van-cell-group>-->
+<!--        <van-cell title="个人信息" is-link to="userinfo" />-->
+<!--      </van-cell-group>-->
+<!--    </div>-->
+    <div class="function-list">
+      <van-row type="flex" justify="space-around">
+        <van-col span="6" class="function-list-item">
+          <van-icon class="iconfont" class-prefix="icon-fabu" name color="#FCAF23" size="40" />发布
+        </van-col>
+        <van-col span="6" class="function-list-item">
+          <van-icon class="iconfont" class-prefix="icon-guanzhukehu" name color="#FF616F" size="40" />关注
+        </van-col>
+        <van-col span="6" class="function-list-item">
+          <van-icon class="iconfont" class-prefix="icon-jilu" name color="#FC41AC" size="40" />记录
+        </van-col>
+      </van-row>
     </div>
   </div>
 </template>
@@ -57,6 +91,11 @@ export default {
     this.init()
   },
   methods: {
+    toUserInfo () {
+      this.$router.push('/userinfo')
+    },
+    onClickLeft () {
+    },
     imgClick () {
       this.showPreview = true
       this.images = []
@@ -101,22 +140,29 @@ export default {
   .content {
     .content-title {
       display: flex;
-      flex: 1 1 auto;
       flex-direction: row;
-      text-align: center;
-      height: 100px;
-      .content-font {
-        font-size: 14px;
-        font-weight: bold;
-        width: 50%;
-        line-height: 100px;
-        text-align: left;
+      justify-content: space-between;
+      padding: 8px;
+      .content-title-font {
+
       }
-      .content-icon {
-        text-align: left;
-        padding-top: 10px;
-        padding-left: 30px;
-        width: 50%;
+      .content-title-icon {
+
+      }
+      .content-title-button {
+
+      }
+      .content-image-preview {
+      }
+      .function-list {
+        margin-top: 30px;
+        .function-list-item {
+          flex-direction: column;
+          .function-list-item-font {
+            font-size: 14px;
+            font-weight: bold;
+          }
+        }
       }
     }
     .content-cell {

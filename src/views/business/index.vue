@@ -1,5 +1,11 @@
 <template>
   <div class="page">
+    <van-sticky>
+      <van-notice-bar
+          left-icon="volume-o"
+          text="枣园村苹果收购价5块一斤，5块一斤，贩子的需求量5万斤，抓紧摘苹果卖呀"
+      />
+    </van-sticky>
     <van-tabs v-model="activeName">
       <van-tab title="所有" name="all">
         <van-sticky :offset-top="40">

@@ -1,73 +1,112 @@
 <template>
   <div class="content">
-    <div>
+    <div class="head">
       <van-sticky>
-        <div>
-          <van-nav-bar
-            title="个人中心"
-            @click-left="onClickLeft"
-          />
-        </div>
+        <van-nav-bar class="head"
+          :border="false"
+          title="个人中心"
+          @click-left="onClickLeft"
+        />
       </van-sticky>
-    </div>
-    <div class="content-title">
-      <div class="content-title-icon">
-        <van-uploader
-          :after-read="onRead"
-          max-count="1"
-          :max-size="10 * 1024 * 1024"
-          result-type="file"
-          @delete="deleteIcon()">
-          <van-image
-            round
-            width="80"
-            height="80"
-            fit="cover"
-            :src="url"
-          />
-        </van-uploader>
-<!--        <van-image-->
-<!--          round-->
-<!--          width="80"-->
-<!--          height="80"-->
-<!--          fit="cover"-->
-<!--          :src="url"-->
-<!--          @click="imgClick"-->
-<!--        />-->
-<!--        <van-nav-bar-->
-<!--          title="标题"-->
-<!--          left-text="返回"-->
-<!--          right-text="按钮"-->
-<!--          v-show="showPreview"-->
-<!--        />-->
-<!--        <div class="content-image-preview">-->
-<!--          <van-image-preview ref="imagePreview" v-model="showPreview" :images="images" @change="showPreviewChange">-->
-<!--            <template #index>-->
-<!--            </template>-->
-<!--          </van-image-preview>-->
-<!--        </div>-->
+      <div class="content-title">
+        <div class="content-title-icon">
+<!--          <van-uploader-->
+<!--            :after-read="onRead"-->
+<!--            max-count="1"-->
+<!--            :max-size="10 * 1024 * 1024"-->
+<!--            result-type="file"-->
+<!--            @delete="deleteIcon()">-->
+<!--            <van-image-->
+<!--              round-->
+<!--              width="80"-->
+<!--              height="80"-->
+<!--              fit="cover"-->
+<!--              :src="url"-->
+<!--            />-->
+<!--          </van-uploader>-->
+                  <van-image
+                    round
+                    width="80"
+                    height="80"
+                    fit="cover"
+                    :src="url"
+                    @click="imgClick"
+                  />
+                  <div class="content-image-preview">
+                    <van-image-preview ref="imagePreview" v-model="showPreview" :get-container="getContainer" :images="images" @change="showPreviewChange" :show-index="false">
+                      <template #cover>
+                        <div class="preview">
+                          <div class="preview-left">
+                            <&nbsp;头像
+                          </div>
+                          <div class="preview-right">
+                            ...
+                          </div>
+                        </div>
+                      </template>
+                    </van-image-preview>
+                  </div>
+        </div>
+        <!--显示昵称-->
+        <div class="content-title-font">
+          <div class="content-title-font-name">
+            <div>{{name}}</div>
+            <van-button type="primary" round color="red" size="mini" disabled>有资产</van-button>
+          </div>
+          <div class="content-title-font-phone">
+            <van-icon name="phone-circle-o" />
+            <div>15543257561</div>
+          </div>
+        </div>
+        <van-button class="content-title-button" round type="info" @click="toUserInfo">编辑资料</van-button>
       </div>
-      <!--显示昵称-->
-      <div class="content-title-font">{{name}}</div>
-      <div class="content-title-button"><van-button round type="info" @click="toUserInfo">编辑资料</van-button></div>
+      <div class="integral">
+        <div class="right-border">
+          <div>123</div>
+          <div>分红积分</div>
+        </div>
+        <div class="right-border">
+          <div>123</div>
+          <div>分享积分</div>
+        </div>
+        <div class="integral-content ">
+          <div>123</div>
+          <div>现金积分</div>
+        </div>
+      </div>
     </div>
-<!--    <div class="content-cell">-->
-<!--      <van-cell-group>-->
-<!--        <van-cell title="个人信息" is-link to="userinfo" />-->
-<!--      </van-cell-group>-->
-<!--    </div>-->
-    <div class="function-list">
-      <van-row type="flex" justify="space-around">
-        <van-col span="6" class="function-list-item">
-          <van-icon class="iconfont" class-prefix="icon-fabu" name color="#FCAF23" size="40" />发布
-        </van-col>
-        <van-col span="6" class="function-list-item">
-          <van-icon class="iconfont" class-prefix="icon-guanzhukehu" name color="#FF616F" size="40" />关注
-        </van-col>
-        <van-col span="6" class="function-list-item">
-          <van-icon class="iconfont" class-prefix="icon-jilu" name color="#FC41AC" size="40" />记录
-        </van-col>
-      </van-row>
+    <div class="card">
+      <img src="../../assets/login.png" class="card-img"/>
+    </div>
+    <!--功能列表-->
+    <div class="list">
+      <h4 class="list-font">应用列表</h4>
+      <div class="function-list">
+        <div class="function-item">
+          <div class="function-item-icon">
+            <van-icon class="iconfont" class-prefix="icon-fabu" name color="#FCAF23" size="40" />
+          </div>
+          <div class="function-item-font">
+            发布
+          </div>
+        </div>
+        <div class="function-item">
+          <div class="function-item-icon">
+            <van-icon class="iconfont" class-prefix="icon-guanzhukehu" name color="#FF616F" size="40" />
+          </div>
+          <div class="function-item-font">
+            关注
+          </div>
+        </div>
+        <div class="function-item">
+          <div class="function-item-icon">
+            <van-icon class="iconfont" class-prefix="icon-jilu" name color="#FC41AC" size="40" />
+          </div>
+          <div class="function-item-font">
+            记录
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -91,6 +130,9 @@ export default {
     this.init()
   },
   methods: {
+    getContainer () {
+      return document.querySelector('.my-container')
+    },
     toUserInfo () {
       this.$router.push('/userinfo')
     },
@@ -138,35 +180,104 @@ export default {
 
 <style lang="less" scoped>
   .content {
-    .content-title {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      padding: 8px;
-      .content-title-font {
-
+    .head {
+      background: #96B97D;
+      .content-title {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0 8px;
+        .content-title-icon {
+          flex: 1;
+        }
+        .content-title-font {
+          flex: 3;
+          align-self: flex-start;
+          justify-content: left;
+          text-align: left;
+          padding: 5px;
+          .content-title-font-name {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            font-size: 20px;
+            font-weight: bold;
+          }
+          .content-title-font-phone {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+          }
+        }
+        .content-title-button {
+          flex: 1;
+          height: 30px;
+        }
       }
-      .content-title-icon {
-
+      .integral {
+        display: flex;
+        flex-direction: row;
+        margin-top: 20px;
+        padding-bottom: 20px;
+        .integral-content {
+          flex: 1;
+          font: normal bold 12px "宋体",sans-serif;
+        }
+        .right-border {
+          flex: 1;
+          font: normal bold 12px "宋体",sans-serif;
+          border-right: 2px solid #1989FA;
+        }
       }
-      .content-title-button {
-
+    }
+    .card {
+      padding: 20px 10px;
+      .card-img {
+        height: 80px;
+        width: 100%;
+        border-radius: 8px;
       }
-      .content-image-preview {
+    }
+    .list {
+      border: 10px solid #F7F8FA;
+      .list-font {
+        text-align: left;
+        margin-left: 10px;
+        margin-bottom: 20px;
       }
       .function-list {
-        margin-top: 30px;
-        .function-list-item {
-          flex-direction: column;
-          .function-list-item-font {
-            font-size: 14px;
-            font-weight: bold;
+        font: normal bold 12px "宋体",sans-serif;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        .function-item {
+          .function-item-icon {
+
+          }
+          .function-item-font {
+            margin-bottom: 20px;
           }
         }
       }
     }
-    .content-cell {
-      text-align: left;
+  }
+  .content-image-preview {
+    .preview {
+      display: flex;
+      width: 300px;
+      flex-direction: row;
+      justify-content: space-between;
+      .preview-left {
+        flex: 1;
+        color: white;
+
+      }
+      .preview-right {
+        flex: 1;
+        color: white;
+        margin-right: 0;
+        margin-left: auto;
+      }
     }
   }
 </style>

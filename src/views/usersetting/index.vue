@@ -54,7 +54,7 @@
             <van-button type="primary" round color="red" size="mini" disabled>有资产</van-button>
           </div>
           <div class="content-title-font-phone">
-            <van-icon name="phone-circle-o" />
+            <van-icon name="phone-circle-o" size="20px"/>
             <div>15543257561</div>
           </div>
         </div>
@@ -202,11 +202,16 @@ export default {
             align-items: center;
             font-size: 20px;
             font-weight: bold;
+            margin-bottom: 10px;
+            margin-top: 8px;
           }
           .content-title-font-phone {
             display: flex;
             flex-direction: row;
             align-items: center;
+          }
+          .content-title-font-phone div{
+            font-size: 13px;
           }
         }
         .content-title-button {
